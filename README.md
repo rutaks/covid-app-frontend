@@ -30,6 +30,8 @@ A Covid platform to track individuals of a population that have been vaccinated
 #### Clone The Repo:
 
 ```
+$ git clone https://github.com/rutaks/covid-app-frontend.git
+$ cd covid-app-frontend/
 
 ```
 
