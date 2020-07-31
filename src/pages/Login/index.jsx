@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Title from 'antd/lib/typography/Title';
 import { Input, Form } from 'formik-antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Button, Row, Col } from 'antd';
+import { Button, Row, Col, message } from 'antd';
 import './index.css';
 import loginAction from '../../redux/actions/login';
 
@@ -21,8 +21,13 @@ const Login = ({ loginState, loginAction }) => {
   useEffect(() => {
     loginState.success && history.push('/');
   }, [loginState.success, history]);
+
+  useEffect(() => {
+    loginState.error && message.error(loginState.error);
+  }, [loginState.error]);
   return (
     <Row>
+      {localStorage.MOU_COVID_TOKEN && history.push('/')}
       <Col span={8} offset={8}>
         <Formik
           initialValues={{

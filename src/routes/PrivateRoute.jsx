@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Redirect, Switch, Link } from 'react-router-dom';
-import { Layout, Menu, Dropdown } from 'antd';
+import { Redirect, Switch, Link, Route } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined, InsertRowAboveOutlined } from '@ant-design/icons';
+import NotFound from '../pages/NotFound';
+import Hospital from '../pages/Hospital';
 
 const { Header, Sider, Content } = Layout;
 
@@ -24,14 +26,6 @@ export default function PrivateRoute() {
 
   if (!localStorage.MOU_COVID_TOKEN) return <Redirect to="/login" />;
 
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <a href="/logout">Logout</a>
-      </Menu.Item>
-    </Menu>
-  );
-
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -39,7 +33,11 @@ export default function PrivateRoute() {
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<InsertRowAboveOutlined />}>
             <Link to="/" />
-            Home
+            Hospitals
+          </Menu.Item>
+          <Menu.Item key="2" icon={<InsertRowAboveOutlined />}>
+            <Link to="/organization" />
+            Organizations
           </Menu.Item>
         </Menu>
       </Sider>
@@ -49,11 +47,6 @@ export default function PrivateRoute() {
             className: 'trigger',
             onClick: toggle
           })}
-          <Dropdown overlay={menu}>
-            {/* <Link className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-              {`${user.firstName} ${user.lastName}`} <DownOutlined />
-            </Link> */}
-          </Dropdown>
         </Header>
         <Content
           className="site-layout-background"
@@ -63,7 +56,10 @@ export default function PrivateRoute() {
             minHeight: 280
           }}
         >
-          <Switch></Switch>
+          <Switch>
+            <Route exact path="/hospitals" component={Hospital} />
+            <Route exact component={NotFound} />
+          </Switch>
         </Content>
       </Layout>
     </Layout>
