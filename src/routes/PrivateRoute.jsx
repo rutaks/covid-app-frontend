@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined, InsertRowAboveOutlined } from '@ant-design/icons';
 import NotFound from '../pages/NotFound';
 import Hospital from '../pages/Hospital';
+import Organisation from '../pages/Organisation';
 
 const { Header, Sider, Content } = Layout;
 
@@ -36,8 +37,8 @@ export default function PrivateRoute() {
             Hospitals
           </Menu.Item>
           <Menu.Item key="2" icon={<InsertRowAboveOutlined />}>
-            <Link to="/organization" />
-            Organizations
+            <Link to="/organisations" />
+            Organisations
           </Menu.Item>
         </Menu>
       </Sider>
@@ -58,6 +59,7 @@ export default function PrivateRoute() {
         >
           <Switch>
             <Route exact path="/hospitals" component={Hospital} />
+            <Route exact path="/organisations" component={Organisation} />
             <Route exact component={NotFound} />
           </Switch>
         </Content>

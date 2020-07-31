@@ -10,7 +10,7 @@ import { message } from 'antd';
 const CreateHospital = ({ createHospitalAction, createHospitalState: { loading, success, error } }) => {
   useEffect(() => {
     if (success) {
-      message.success('Category created succesffully');
+      message.success('Category created succesfully');
     }
   }, [success]);
 
