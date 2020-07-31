@@ -1,5 +1,6 @@
 import { apiActionTypes as api } from './apiActionTypes';
 import { userActionTypes as user } from './userActionTypes';
+import { hospitalActionTypes as hospital } from './hospitalActionTypes';
 
 /**
  * A variable that should store all action types in project
@@ -7,5 +8,6 @@ import { userActionTypes as user } from './userActionTypes';
  */
 export const actionTypes = {
   api,
-  user
+  user,
+  hospital
 };

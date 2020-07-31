@@ -1,4 +1,5 @@
-import { userInitialState as user } from "./userInitialState";
+import { userInitialState as user } from './userInitialState';
+import { hospitalInitialState as hospital } from './hospitalInitialState';
 
 /**
  * An object that should hold all initialStates from the system
@@ -6,4 +7,5 @@ import { userInitialState as user } from "./userInitialState";
  */
 export const initialState = {
   user,
+  hospital
 };
