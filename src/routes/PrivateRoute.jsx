@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect, Switch, Link } from 'react-router-dom';
-import { Layout, Menu, Dropdown } from 'antd';
+import { Layout, Menu } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined, InsertRowAboveOutlined } from '@ant-design/icons';
 
 const { Header, Sider, Content } = Layout;
@@ -21,16 +21,15 @@ export default function PrivateRoute() {
   const toggle = () => {
     setCollapsed(!collapsed);
   };
+  // const menu = (
+  //   <Menu>
+  //     <Menu.Item>
+  //       <a href="/logout">Logout</a>
+  //     </Menu.Item>
+  //   </Menu>
+  // );
 
   if (!localStorage.MOU_COVID_TOKEN) return <Redirect to="/login" />;
-
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <a href="/logout">Logout</a>
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
     <Layout style={{ height: '100vh' }}>
@@ -49,11 +48,13 @@ export default function PrivateRoute() {
             className: 'trigger',
             onClick: toggle
           })}
+          {/**
           <Dropdown overlay={menu}>
-            {/* <Link className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+            <Link className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
               {`${user.firstName} ${user.lastName}`} <DownOutlined />
-            </Link> */}
+            </Link>
           </Dropdown>
+         */}
         </Header>
         <Content
           className="site-layout-background"

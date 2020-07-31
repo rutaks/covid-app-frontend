@@ -1,10 +1,10 @@
-import { actionTypes } from "../../actionTypes";
+import { actionTypes } from '../../actionTypes';
 
 export default (state, { type, payload }) => {
   switch (type) {
     case actionTypes.user.LOGIN_USER_START:
       // localStorage.MOU_COVID_USER = '';
-      localStorage.MOU_COVID_TOKEN = "";
+      localStorage.MOU_COVID_TOKEN = '';
       return {
         ...state,
         login: {
@@ -12,29 +12,29 @@ export default (state, { type, payload }) => {
           success: false,
           message: null,
           loading: true,
-          error: null,
-        },
+          error: null
+        }
       };
     case actionTypes.user.LOGIN_USER_END:
       return {
         ...state,
-        login: { ...state.login, loading: false },
+        login: { ...state.login, loading: false }
       };
     case actionTypes.user.LOGIN_USER_SUCCESS:
       // localStorage.MOU_COVID_USER = JSON.stringify(payload.payload.user);
-      localStorage.MOU_COVID_TOKEN = payload.payload.token;
+      localStorage.MOU_COVID_TOKEN = payload.token;
 
       return {
         ...state,
         isAuth: true,
-        profile: payload.payload.user,
+        // profile: payload.payload.user,
         // user: localStorage.MOU_COVID_USER,
         login: {
           loading: false,
           success: true,
           message: payload.message,
-          error: null,
-        },
+          error: null
+        }
       };
     case actionTypes.user.LOGIN_USER_FAILURE:
       return {
@@ -43,8 +43,8 @@ export default (state, { type, payload }) => {
           loading: false,
           success: false,
           message: null,
-          error: payload,
-        },
+          error: payload
+        }
       };
     default:
       return null;

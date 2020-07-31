@@ -28,6 +28,7 @@
     "yup": "^0.29.1"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "start": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
