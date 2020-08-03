@@ -19,7 +19,7 @@ import loginAction from '../../redux/actions/login';
 const Login = ({ loginState, loginAction }) => {
   const history = useHistory();
   useEffect(() => {
-    loginState.success && history.push('/');
+    loginState.success && history.push('/hospitals');
   }, [loginState.success, history]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Login = ({ loginState, loginAction }) => {
   }, [loginState.error]);
   return (
     <Row>
-      {localStorage.MOU_COVID_TOKEN && history.push('/hospitals')}
+      {localStorage.MOU_COVID_TOKEN && history.push('/')}
       <Col span={8} offset={8}>
         <Formik
           initialValues={{
