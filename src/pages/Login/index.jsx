@@ -27,7 +27,7 @@ const Login = ({ loginState, loginAction }) => {
   }, [loginState.error]);
   return (
     <Row>
-      {localStorage.MOU_COVID_TOKEN && history.push('/')}
+      {localStorage.MOU_COVID_TOKEN && history.push('/hospitals')}
       <Col span={8} offset={8}>
         <Formik
           initialValues={{

@@ -33,7 +33,7 @@ export default function PrivateRoute() {
         <div className="logo"></div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<InsertRowAboveOutlined />}>
-            <Link to="/" />
+            <Link to="/hospitals" />
             Hospitals
           </Menu.Item>
           <Menu.Item key="2" icon={<InsertRowAboveOutlined />}>
