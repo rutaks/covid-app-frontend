@@ -5,8 +5,11 @@ import { MenuUnfoldOutlined, MenuFoldOutlined, InsertRowAboveOutlined } from '@a
 import NotFound from '../pages/NotFound';
 import Hospital from '../pages/Hospital';
 import Organisation from '../pages/Organisation';
+import Agent from '../pages/Hospital/Agent';
 
 const { Header, Sider, Content } = Layout;
+
+const { SubMenu } = Menu;
 
 export default function PrivateRoute() {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,13 +33,18 @@ export default function PrivateRoute() {
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo"></div>
+        <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1" icon={<InsertRowAboveOutlined />}>
-            <Link to="/hospitals" />
-            Hospitals
-          </Menu.Item>
-          <Menu.Item key="2" icon={<InsertRowAboveOutlined />}>
+          <SubMenu key="sub1" icon={<InsertRowAboveOutlined />} title="Hospital">
+            <Menu.Item key="1">
+              <Link to="/hospitals" />
+              Hospitals
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/agents">Agents</Link>
+            </Menu.Item>
+          </SubMenu>
+          <Menu.Item key="3" icon={<InsertRowAboveOutlined />}>
             <Link to="/organisations" />
             Organisations
           </Menu.Item>
@@ -58,6 +66,7 @@ export default function PrivateRoute() {
           }}
         >
           <Switch>
+            <Route exact path="/agents" component={Agent} />
             <Route exact path="/hospitals" component={Hospital} />
             <Route exact path="/organisations" component={Organisation} />
             <Route exact component={NotFound} />
