@@ -6,6 +6,7 @@ import NotFound from '../pages/NotFound';
 import Hospital from '../pages/Hospital';
 import Organisation from '../pages/Organisation';
 import Agent from '../pages/Hospital/Agent';
+import AgentOrg from '../pages/Organisation/Agent';
 
 const { Header, Sider, Content } = Layout;
 
@@ -41,13 +42,18 @@ export default function PrivateRoute() {
               Hospitals
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/agents">Agents</Link>
+              <Link to="/hospitals/agents">Agents</Link>
             </Menu.Item>
           </SubMenu>
-          <Menu.Item key="3" icon={<InsertRowAboveOutlined />}>
-            <Link to="/organisations" />
-            Organisations
-          </Menu.Item>
+          <SubMenu key="sub2" icon={<InsertRowAboveOutlined />} title="Organisations">
+            <Menu.Item key="1">
+              <Link to="/organisations" />
+              Organisations
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/organisations/agents">Agents</Link>
+            </Menu.Item>
+          </SubMenu>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -66,9 +72,10 @@ export default function PrivateRoute() {
           }}
         >
           <Switch>
-            <Route exact path="/agents" component={Agent} />
+            <Route exact path="/hospitals/agents" component={Agent} />
             <Route exact path="/hospitals" component={Hospital} />
             <Route exact path="/organisations" component={Organisation} />
+            <Route exact path="/organisations/agents" component={AgentOrg} />
             <Route exact component={NotFound} />
           </Switch>
         </Content>

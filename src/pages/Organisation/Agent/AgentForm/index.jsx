@@ -27,7 +27,7 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
       </Form.Item>
       <Form.Item
         name="hospitalId"
-        label="Select Hospital"
+        label="Select Organisation"
         validateStatus={errors.hospital && touched.hospital ? 'error' : ''}
         help={errors.hospital && errors.hospital}
       >
@@ -38,8 +38,8 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
           optionFilterProp="children"
           filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <Option value="jack">Plato</Option>
-          <Option value="lucy">CHUCK</Option>
+          <Option value="jack">Anglican Chruch Remera</Option>
+          <Option value="lucy">Sundowner</Option>
         </Select>
         ,
       </Form.Item>
