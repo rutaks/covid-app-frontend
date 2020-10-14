@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect, Switch, Link, Route } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined, InsertRowAboveOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  InsertRowAboveOutlined,
+  LogoutOutlined
+} from '@ant-design/icons';
 import NotFound from '../pages/NotFound';
 import Hospital from '../pages/Hospital';
 import Organisation from '../pages/Organisation';
@@ -14,6 +19,7 @@ const { SubMenu } = Menu;
 
 export default function PrivateRoute() {
   const [collapsed, setCollapsed] = useState(false);
+  const [size, setSize] = useState('large');
   // const [user, setUser] = useState({
   //   firstName: "",
   //   lastName: "",
@@ -25,6 +31,9 @@ export default function PrivateRoute() {
   //   }
   // }, []);
 
+  const handleSizeChange = (e) => {
+    setSize({ size: e.target.value });
+  };
   const toggle = () => {
     setCollapsed(!collapsed);
   };
@@ -55,6 +64,17 @@ export default function PrivateRoute() {
             </Menu.Item>
           </SubMenu>
         </Menu>
+        <Link to="/logout">
+          <Button
+            style={{ position: 'absolute', right: 0, bottom: 0, width: '100%' }}
+            type="primary"
+            onChange={handleSizeChange}
+            icon={<LogoutOutlined />}
+            size={size}
+          >
+            Logout
+          </Button>
+        </Link>
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
