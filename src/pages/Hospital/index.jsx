@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import getHospitalsAction from '../../redux/actions/hospital/getHospitals';
 import PropTypes from 'prop-types';
 import CreateHospital from './CreateHospital';
-import Title from 'antd/lib/typography/Title';
 
 const Hospital = ({ getHospitalsState, hospitalPayload, getHospitalsAction }) => {
   const [items, setItems] = useState([]);

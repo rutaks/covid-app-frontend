@@ -51,15 +51,15 @@ export default function PrivateRoute() {
               Hospitals
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/hospitals/agents">Agents</Link>
+              <Link to="/hospitals/agents">Admins</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu key="sub2" icon={<InsertRowAboveOutlined />} title="Organisations">
-            <Menu.Item key="1">
+            <Menu.Item key="3">
               <Link to="/organisations" />
               Organisations
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="4">
               <Link to="/organisations/agents">Agents</Link>
             </Menu.Item>
           </SubMenu>

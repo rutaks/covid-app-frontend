@@ -12,7 +12,7 @@ const Agent = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item href="">
           <InsertRowAboveOutlined />
-          <span>Hospitals</span>
+          <span>Organisation</span>
         </Breadcrumb.Item>
       </Breadcrumb>
       <br />

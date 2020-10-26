@@ -8,7 +8,13 @@ import PropTypes from 'prop-types';
  * Agent Form used to create or edit a hospital
  * @since version 1.0
  */
-export default function AgentForm({ formType = 'CREATE', loading = false, errors = {}, touched = {} }) {
+export default function AgentForm({
+  formType = 'CREATE',
+  loading = false,
+  errors = {},
+  touched = {},
+  itemsArr = []
+}) {
   const { Option } = Select;
   return (
     <Form
@@ -19,29 +25,47 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
     >
       <Form.Item
         name="names"
-        label="Agent Name"
+        label="Admin Names"
         validateStatus={errors.names && touched.names ? 'error' : ''}
         help={errors.names && errors.names}
       >
-        <Input name="names" />
+        <Input name="names" placeholder="Admin's hospital name" />
       </Form.Item>
       <Form.Item
-        name="hospitalId"
+        name="email"
+        label="Email"
+        validateStatus={errors.email && touched.email ? 'error' : ''}
+        help={errors.email && errors.email}
+      >
+        <Input name="email" placeholder="example@domain.com" />
+      </Form.Item>
+      <Form.Item
+        name="phone"
+        label="Phone"
+        validateStatus={errors.phone && touched.phone ? 'error' : ''}
+        help={errors.phone && errors.phone}
+      >
+        <Input type="phone" name="phone" placeholder="+2507xxxxxxx" />
+      </Form.Item>
+      <Form.Item
+        name="hospital"
         label="Select Hospital"
         validateStatus={errors.hospital && touched.hospital ? 'error' : ''}
         help={errors.hospital && errors.hospital}
       >
         <Select
+          name="hospital"
           showSearch
-          style={{ width: 200 }}
-          placeholder="Select a person"
+          placeholder="Select a hospital"
           optionFilterProp="children"
           filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <Option value="jack">Plato</Option>
-          <Option value="lucy">CHUCK</Option>
+          {itemsArr.map((item, index) => (
+            <Option key={index} value={item.hospital.id}>
+              {item.hospital.names + ' ' + item.hospital.id}
+            </Option>
+          ))}
         </Select>
-        ,
       </Form.Item>
       <Button loading={loading} type={'primary'} htmlType="submit">
         {formType === 'CREATE' ? 'Submit' : 'Edit'}
@@ -58,5 +82,7 @@ AgentForm.propTypes = {
   /** Form array holding all form related errors */
   errors: PropTypes.object,
   /** Form event listener holding all form related touched event  */
-  touched: PropTypes.object
+  touched: PropTypes.object,
+  /** Array holding response of all Admins from AgentTable */
+  itemsArr: PropTypes.array
 };

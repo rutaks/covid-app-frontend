@@ -19,29 +19,48 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
     >
       <Form.Item
         name="names"
-        label="Agent Name"
+        label="Agent Names"
         validateStatus={errors.names && touched.names ? 'error' : ''}
         help={errors.names && errors.names}
       >
-        <Input name="names" />
+        <Input name="names" placeholder="Agent's name" />
       </Form.Item>
       <Form.Item
-        name="hospitalId"
-        label="Select Organisation"
+        name="email"
+        label="Email"
+        validateStatus={errors.email && touched.email ? 'error' : ''}
+        help={errors.email && errors.email}
+      >
+        <Input name="email" placeholder="example@domain.com" />
+      </Form.Item>
+      <Form.Item
+        name="phone"
+        label="Phone"
+        validateStatus={errors.phone && touched.phone ? 'error' : ''}
+        help={errors.phone && errors.phone}
+      >
+        <Input type="phone" name="phone" placeholder="+2507xxxxxxx" />
+      </Form.Item>
+      <Form.Item
+        name="organization"
+        label="Select Hospital"
         validateStatus={errors.hospital && touched.hospital ? 'error' : ''}
         help={errors.hospital && errors.hospital}
       >
         <Select
+          name="organization"
           showSearch
-          style={{ width: 200 }}
-          placeholder="Select a person"
+          placeholder="Select an organization"
           optionFilterProp="children"
           filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <Option value="jack">Anglican Chruch Remera</Option>
-          <Option value="lucy">Sundowner</Option>
+          {/* {itemsArr.map((item, index) => (
+            <Option key={index} value={item.hospital.id}>
+              {item.hospital.names + ' ' + item.hospital.id}
+            </Option>
+          ))} */}
+          <Option>Test</Option>
         </Select>
-        ,
       </Form.Item>
       <Button loading={loading} type={'primary'} htmlType="submit">
         {formType === 'CREATE' ? 'Submit' : 'Edit'}
