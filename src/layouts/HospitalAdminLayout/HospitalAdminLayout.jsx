@@ -6,7 +6,7 @@ import NotFound from '../../pages/NotFound';
 import { HospitalAgent } from '../../pages/HospitalAdminArea';
 import { connect } from 'react-redux';
 import setUserStore from '../../redux/actions/setUserStore';
-import HospitalAdminSidebar from './components';
+import HospitalAdminSidebar from './components/HospitalAdminSidebar';
 import { urls } from '../../routes';
 
 const { Header, Content } = Layout;

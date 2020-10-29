@@ -3,7 +3,7 @@ import { Menu, Button, Layout } from 'antd';
 import { Link } from 'react-router-dom';
 import { InsertRowAboveOutlined, LogoutOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-import { urls } from '../../../routes';
+import { urls } from '../../../../routes';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
