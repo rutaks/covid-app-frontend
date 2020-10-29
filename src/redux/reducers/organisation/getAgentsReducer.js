@@ -15,7 +15,9 @@ export default (state, { type, payload }) => {
     case actionTypes.agent.GET_AGENTS_SUCCESS:
       return {
         ...state,
-        agentPayload: payload,
+        // agentPayload: payload,
+        //TODO: REFACTOR FOR PAGINATION
+        agentPayload: { content: payload },
         getAdmins: { ...state.getAdmins, success: true }
       };
     case actionTypes.agent.GET_AGENTS_FAILURE:

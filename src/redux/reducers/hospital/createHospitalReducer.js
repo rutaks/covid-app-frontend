@@ -10,15 +10,16 @@ export default (state, { type, payload }) => {
     case actionTypes.hospital.CREATE_HOSPITAL_END:
       return {
         ...state,
-        createHospital: { ...state.createHospital, loading: false }
+        createHospital: { ...state.createHospital, loading: false, success: false }
       };
     case actionTypes.hospital.CREATE_HOSPITAL_SUCCESS:
       return {
         ...state,
-        hospitalPayload: {
-          ...state.hospitalPayload,
-          content: [payload, ...state.hospitalPayload.content]
-        },
+        //TODO: REFACTOR FOR PAGINATION
+        // hospitalPayload: {
+        //   ...state.hospitalPayload,
+        //   content: [...state.hospitalPayload.content, payload]
+        // },
         createHospital: { ...state.createHospital, success: true }
       };
     case actionTypes.hospital.CREATE_HOSPITAL_FAILURE:

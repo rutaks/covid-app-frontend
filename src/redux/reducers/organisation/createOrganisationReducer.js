@@ -10,15 +10,16 @@ export default (state, { type, payload }) => {
     case actionTypes.organisation.CREATE_ORGANISATION_END:
       return {
         ...state,
-        createOrganisation: { ...state.createOrganisation, loading: false }
+        createOrganisation: { ...state.createOrganisation, loading: false, success: false }
       };
     case actionTypes.organisation.CREATE_ORGANISATION_SUCCESS:
       return {
         ...state,
-        organisationPayload: {
-          ...state.organisationPayload,
-          content: [payload, ...state.organisationPayload.content]
-        },
+        //TODO: REFACTOR FOR PAGINATION
+        // organisationPayload: {
+        //   ...state.organisationPayload,
+        //   content: [payload, ...state.organisationPayload.content]
+        // },
         createOrganisation: { ...state.createOrganisation, success: true }
       };
     case actionTypes.organisation.CREATE_ORGANISATION_FAILURE:

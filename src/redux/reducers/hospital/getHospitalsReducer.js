@@ -16,7 +16,9 @@ export default (state, { type, payload }) => {
     case actionTypes.hospital.GET_HOSPITALS_SUCCESS:
       return {
         ...state,
-        hospitalPayload: payload,
+        // hospitalPayload: payload,
+        //TODO: REFACTOR FOR PAGINATION
+        hospitalPayload: { content: payload },
         getHospitals: { ...state.getHospitals, success: true }
       };
     case actionTypes.hospital.GET_HOSPITALS_FAILURE:

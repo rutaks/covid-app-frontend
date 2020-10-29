@@ -15,7 +15,9 @@ export default (state, { type, payload }) => {
     case actionTypes.admin.GET_ADMINS_SUCCESS:
       return {
         ...state,
-        adminPayload: payload,
+        // adminPayload: payload,
+        //TODO: REFACTOR FOR PAGINATION
+        adminPayload: { content: payload },
         getAdmins: { ...state.getAdmins, success: true }
       };
     case actionTypes.admin.GET_ADMINS_FAILURE:
