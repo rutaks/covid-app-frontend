@@ -1,30 +1,30 @@
 import { Breadcrumb } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import { InsertRowAboveOutlined, HomeOutlined } from '@ant-design/icons';
-import CreateAgent from './CreateAgent';
-import AgentTable from './AgentTable';
+import CreateAdmin from './CreateAdmin';
+import AdminTable from './AdminTable';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getAgentsAction from '../../../redux/actions/hospital/getAgents';
+import getAdminsAction from '../../../redux/actions/hospital/getAdmins';
 
-const Agent = ({ getAgentsState, agentPayload, getAgentsAction }) => {
+const Admin = ({ getAdminsState, adminPayload, getAdminsAction }) => {
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
   useEffect(() => {
-    getAgentsAction({ page: currentPage });
-  }, [getAgentsAction, currentPage]);
+    getAdminsAction({ page: currentPage });
+  }, [getAdminsAction, currentPage]);
 
   useEffect(() => {
-    if (agentPayload.content) {
-      const response = agentPayload.content.map((item, index) => {
+    if (adminPayload.content) {
+      const response = adminPayload.content.map((item, index) => {
         return { ...item, index: index + 1 + 10 * currentPage };
       });
       setItems(response);
-      setTotalElements(agentPayload.totalElements);
+      setTotalElements(adminPayload.totalElements);
     }
-  }, [agentPayload, currentPage]);
+  }, [adminPayload, currentPage]);
 
   return (
     <Fragment>
@@ -38,11 +38,11 @@ const Agent = ({ getAgentsState, agentPayload, getAgentsAction }) => {
         </Breadcrumb.Item>
       </Breadcrumb>
       <br />
-      <CreateAgent itemsArr={items} />
-      <AgentTable
+      <CreateAdmin itemsArr={items} />
+      <AdminTable
         currentPage={currentPage + 1}
         totalElements={totalElements}
-        isLoading={getAgentsState.loading}
+        isLoading={getAdminsState.loading}
         itemArr={items}
         setCurrentPage={setCurrentPage}
         style={styles.table}
@@ -60,15 +60,15 @@ const styles = {
   }
 };
 
-Agent.propTypes = {
-  getAgentsState: PropTypes.object,
-  agentPayload: PropTypes.object,
-  getAgentsAction: PropTypes.func
+Admin.propTypes = {
+  getAdminsState: PropTypes.object,
+  adminPayload: PropTypes.object,
+  getAdminsAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  getAgentsState: state.hospital.getAgents,
-  agentPayload: state.hospital.agentPayload
+  getAdminsState: state.hospital.getAdmins,
+  adminPayload: state.hospital.adminPayload
 });
 
-export default connect(mapStateToProps, { getAgentsAction })(Agent);
+export default connect(mapStateToProps, { getAdminsAction })(Admin);

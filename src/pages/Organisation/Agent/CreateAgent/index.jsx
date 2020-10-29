@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import AgentForm from '../AgentForm';
 import { validationSchema } from '../validations';
 
-const CreateAgent = () => {
+const CreateAgent = ({ itemsArr = [] }) => {
   return (
     <Formik
       initialValues={{
@@ -15,7 +15,7 @@ const CreateAgent = () => {
       //   createHospitalAction({ names });
       // }}
     >
-      {({ errors, touched }) => <AgentForm errors={errors} touched={touched} />}
+      {({ errors, touched }) => <AgentForm errors={errors} touched={touched} itemsArr={itemsArr} />}
     </Formik>
   );
 };

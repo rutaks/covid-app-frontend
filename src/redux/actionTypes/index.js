@@ -2,6 +2,7 @@ import { apiActionTypes as api } from './apiActionTypes';
 import { userActionTypes as user } from './userActionTypes';
 import { hospitalActionTypes as hospital } from './hospitalActionTypes';
 import { organisationActionTypes as organisation } from './organisationActionTypes';
+import { adminActionTypes as admin } from './adminActionTypes';
 import { agentActionTypes as agent } from './agentActionTypes';
 
 /**
@@ -13,5 +14,6 @@ export const actionTypes = {
   user,
   hospital,
   organisation,
+  admin,
   agent
 };

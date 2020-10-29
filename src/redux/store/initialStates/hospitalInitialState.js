@@ -35,37 +35,37 @@ export const hospitalInitialState = {
     message: null,
     error: null
   },
-  agentPayload: {
+  adminPayload: {
     content: [],
     totalPages: 0,
     totalElements: 0
   },
-  getAgents: {
+  getAdmins: {
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  getAgent: {
+  getAdmin: {
     payload: null,
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  createAgent: {
+  createAdmin: {
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  editAgent: {
+  editAdmin: {
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  deleteAgent: {
+  deleteAdmin: {
     success: false,
     loading: false,
     message: null,

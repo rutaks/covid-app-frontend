@@ -5,23 +5,23 @@ export default (state, { type, payload }) => {
     case actionTypes.agent.GET_AGENTS_START:
       return {
         ...state,
-        getAgents: { success: false, message: null, loading: true, error: null }
+        getAdmins: { success: false, message: null, loading: true, error: null }
       };
     case actionTypes.agent.GET_AGENTS_END:
       return {
         ...state,
-        getAgents: { ...state.getAgents, loading: false }
+        getAdmins: { ...state.getAdmins, loading: false }
       };
     case actionTypes.agent.GET_AGENTS_SUCCESS:
       return {
         ...state,
         agentPayload: payload,
-        getAgents: { ...state.getAgents, success: true }
+        getAdmins: { ...state.getAdmins, success: true }
       };
     case actionTypes.agent.GET_AGENTS_FAILURE:
       return {
         ...state,
-        getAgents: { ...state.getAgents, error: payload }
+        getAdmins: { ...state.getAdmins, error: payload }
       };
     default:
       return null;

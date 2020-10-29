@@ -8,7 +8,13 @@ import PropTypes from 'prop-types';
  * Agent Form used to create or edit a hospital
  * @since version 1.0
  */
-export default function AgentForm({ formType = 'CREATE', loading = false, errors = {}, touched = {} }) {
+export default function AgentForm({
+  formType = 'CREATE',
+  loading = false,
+  errors = {},
+  touched = {},
+  itemsArr = []
+}) {
   const { Option } = Select;
   return (
     <Form
@@ -43,7 +49,7 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
       </Form.Item>
       <Form.Item
         name="organization"
-        label="Select Hospital"
+        label="Select Organization"
         validateStatus={errors.hospital && touched.hospital ? 'error' : ''}
         help={errors.hospital && errors.hospital}
       >
@@ -54,12 +60,11 @@ export default function AgentForm({ formType = 'CREATE', loading = false, errors
           optionFilterProp="children"
           filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          {/* {itemsArr.map((item, index) => (
-            <Option key={index} value={item.hospital.id}>
-              {item.hospital.names + ' ' + item.hospital.id}
+          {itemsArr.map((item, index) => (
+            <Option key={index} value={item.organisation.id}>
+              {item.organisation.names}
             </Option>
-          ))} */}
-          <Option>Test</Option>
+          ))}
         </Select>
       </Form.Item>
       <Button loading={loading} type={'primary'} htmlType="submit">
@@ -77,5 +82,7 @@ AgentForm.propTypes = {
   /** Form array holding all form related errors */
   errors: PropTypes.object,
   /** Form event listener holding all form related touched event  */
-  touched: PropTypes.object
+  touched: PropTypes.object,
+  /** Array holding response of all Agents from AgentTable */
+  itemsArr: PropTypes.array
 };

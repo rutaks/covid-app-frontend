@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import AgentForm from '../AgentForm';
+import AdminForm from '../AdminForm';
 import { validationSchema } from '../validations';
 
 const CreateAgent = ({ itemsArr = [] }) => {
@@ -17,7 +17,7 @@ const CreateAgent = ({ itemsArr = [] }) => {
       //   createHospitalAction({ names });
       // }}
     >
-      {({ errors, touched }) => <AgentForm errors={errors} touched={touched} itemsArr={itemsArr} />}
+      {({ errors, touched }) => <AdminForm errors={errors} touched={touched} itemsArr={itemsArr} />}
     </Formik>
   );
 };

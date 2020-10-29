@@ -1,7 +1,7 @@
 import { initialState } from '../../store/initialStates/';
 import getHospitalsReducer from './getHospitalsReducer';
 import createHospitalReducer from './createHospitalReducer';
-import getAgentsReducer from './getAgentsReducer';
+import getAdminsReducer from './getAdminsReducer';
 /**
  * A function that provides reducer based on action currently being used
  * @param {Object} state - the current state being used, by default is the user state
@@ -11,6 +11,6 @@ import getAgentsReducer from './getAgentsReducer';
 export default (state = initialState.hospital, action) => {
   const getHospitals = getHospitalsReducer(state, action);
   const createHospital = createHospitalReducer(state, action);
-  const getAgents = getAgentsReducer(state, action);
-  return getAgents || getHospitals || createHospital || state;
+  const getAdmins = getAdminsReducer(state, action);
+  return getAdmins || getHospitals || createHospital || state;
 };

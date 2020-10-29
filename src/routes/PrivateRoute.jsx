@@ -10,8 +10,8 @@ import {
 import NotFound from '../pages/NotFound';
 import Hospital from '../pages/Hospital';
 import Organisation from '../pages/Organisation';
-import Agent from '../pages/Hospital/Agent';
-import AgentOrg from '../pages/Organisation/Agent';
+import Admin from '../pages/Hospital/Admin';
+import Agent from '../pages/Organisation/Agent';
 
 const { Header, Sider, Content } = Layout;
 
@@ -51,7 +51,7 @@ export default function PrivateRoute() {
               Hospitals
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/hospitals/agents">Admins</Link>
+              <Link to="/hospitals/admins">Admins</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu key="sub2" icon={<InsertRowAboveOutlined />} title="Organisations">
@@ -92,10 +92,10 @@ export default function PrivateRoute() {
           }}
         >
           <Switch>
-            <Route exact path="/hospitals/agents" component={Agent} />
+            <Route exact path="/hospitals/admins" component={Admin} />
             <Route exact path="/hospitals" component={Hospital} />
             <Route exact path="/organisations" component={Organisation} />
-            <Route exact path="/organisations/agents" component={AgentOrg} />
+            <Route exact path="/organisations/agents" component={Agent} />
             <Route exact component={NotFound} />
           </Switch>
         </Content>

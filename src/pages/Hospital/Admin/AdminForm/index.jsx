@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 
 /**
  * Functional component representing the
- * Agent Form used to create or edit a hospital
+ * Admin Form used to create or edit a hospital
  * @since version 1.0
  */
-export default function AgentForm({
+export default function AdminForm({
   formType = 'CREATE',
   loading = false,
   errors = {},
@@ -62,7 +62,7 @@ export default function AgentForm({
         >
           {itemsArr.map((item, index) => (
             <Option key={index} value={item.hospital.id}>
-              {item.hospital.names + ' ' + item.hospital.id}
+              {item.hospital.names}
             </Option>
           ))}
         </Select>
@@ -74,7 +74,7 @@ export default function AgentForm({
   );
 }
 
-AgentForm.propTypes = {
+AdminForm.propTypes = {
   /** Props identifying design of form specifying if form is an edit or create form*/
   formType: PropTypes.string,
   /** Boolean representing if form is submitting */
@@ -83,6 +83,6 @@ AgentForm.propTypes = {
   errors: PropTypes.object,
   /** Form event listener holding all form related touched event  */
   touched: PropTypes.object,
-  /** Array holding response of all Admins from AgentTable */
+  /** Array holding response of all Admins from AdminTable */
   itemsArr: PropTypes.array
 };
