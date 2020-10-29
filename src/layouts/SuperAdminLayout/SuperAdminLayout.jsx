@@ -19,7 +19,7 @@ const { Header, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
 
-const SuperAdminLayout = ({ userState }) => {
+const SuperAdminLayout = (/**{ //TODO userState} */) => {
   const [collapsed, setCollapsed] = useState(false);
   const [size, setSize] = useState('large');
   const handleSizeChange = (e) => {
