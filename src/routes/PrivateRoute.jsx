@@ -5,6 +5,7 @@ import setUserStore from '../redux/actions/setUserStore';
 import { isSuperAdmin, isHospitalAdmin, isOrganisationAdmin } from '../helpers/userHelper';
 import SuperAdminLayout from '../layouts/SuperAdminLayout';
 import HospitalAdminLayout from '../layouts/HospitalAdminLayout';
+import OrganisationAdminLayout from '../layouts/OrganisationAdminLayout/OrganisationAdminLayout';
 
 const PrivateRoute = ({ userState }) => {
   const [userRole, setRole] = useState();
@@ -21,9 +22,9 @@ const PrivateRoute = ({ userState }) => {
 
   return (
     <Fragment>
-      {isSuperAdmin(userRole) && <HospitalAdminLayout />}
+      {isSuperAdmin(userRole) && <SuperAdminLayout />}
       {isHospitalAdmin(userRole) && <HospitalAdminLayout />}
-      {isOrganisationAdmin(userRole) && <HospitalAdminLayout />}
+      {isOrganisationAdmin(userRole) && <OrganisationAdminLayout />}
     </Fragment>
   );
 };

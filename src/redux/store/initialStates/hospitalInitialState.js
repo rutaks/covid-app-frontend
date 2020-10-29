@@ -50,6 +50,17 @@ export const hospitalInitialState = {
     success: false,
     loading: false,
     message: null,
+    error: null,
+    payload: {
+      content: [],
+      totalPages: 0,
+      totalElements: 0
+    }
+  },
+  createHospitalAgent: {
+    success: false,
+    loading: false,
+    message: null,
     error: null
   },
   getAdmin: {

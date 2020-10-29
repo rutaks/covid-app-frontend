@@ -1,28 +1,35 @@
 import React, { useEffect, useRef } from 'react';
 import { Formik } from 'formik';
-import HospitalAgentForm from '../HospitalAgentForm';
+import AgentForm from '../OrganisationAgentForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 import { validationSchema } from '../validations';
-import createHospitalAgentAction from '../../../../redux/actions/hospital/createHospitalAgent';
+import createOrganisationAgentAction from '../../../../redux/actions/organisation/createAgent';
 
-const CreateHospitalAgent = ({ hospitalId, createHospitalAgentAction, createHospitalAgentState }) => {
+const CreateOrganisationAgent = ({
+  createOrganisationAgentAction,
+  createOrganisationAgentState,
+  organisationId
+}) => {
   const resetFormRef = useRef();
 
   useEffect(() => {
-    if (createHospitalAgentState.success) {
+    if (createOrganisationAgentState.success) {
       //reset form after successful form submission
       message.success('Agent Created Successfully');
       resetFormRef.current();
     }
-  }, [createHospitalAgentState.success]);
+  }, [createOrganisationAgentState.success]);
 
   useEffect(() => {
-    if (createHospitalAgentState.error) {
-      message.error(createHospitalAgentState.error);
+    if (createOrganisationAgentState.error) {
+      message.error(createOrganisationAgentState.error);
     }
-  }, [createHospitalAgentState.error]);
+  }, [createOrganisationAgentState.error]);
+
+  console.log('createOrganisationAgentState.loading');
+  console.log(createOrganisationAgentState.loading);
 
   return (
     <Formik
@@ -34,13 +41,13 @@ const CreateHospitalAgent = ({ hospitalId, createHospitalAgentAction, createHosp
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
         resetFormRef.current = resetForm;
-        values.hospitalId = hospitalId;
-        createHospitalAgentAction(values);
+        values.organisationId = organisationId;
+        createOrganisationAgentAction(values);
       }}
     >
       {({ errors, touched, values }) => (
-        <HospitalAgentForm
-          loading={createHospitalAgentState.loading}
+        <AgentForm
+          loading={createOrganisationAgentState.loading}
           values={values}
           errors={errors}
           touched={touched}
@@ -50,7 +57,7 @@ const CreateHospitalAgent = ({ hospitalId, createHospitalAgentAction, createHosp
   );
 };
 
-CreateHospitalAgent.propTypes = {
+CreateOrganisationAgent.propTypes = {
   /** Props identifying design of form specifying if form is an edit or create form*/
   formType: PropTypes.string,
   /** Boolean representing if form is submitting */
@@ -64,16 +71,16 @@ CreateHospitalAgent.propTypes = {
   /** Function to get  all organizations*/
   getOrganisationsAction: PropTypes.func,
   /** Function to create  all organisation agent*/
-  createHospitalAgentAction: PropTypes.func,
+  createOrganisationAgentAction: PropTypes.func,
   /** Object holding  all organizations*/
   organisationPayload: PropTypes.object,
   /** Object holding  all create agent redux state*/
-  createHospitalAgentState: PropTypes.object,
-  hospitalId: PropTypes.number
+  createOrganisationAgentState: PropTypes.object,
+  organisationId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
-  createHospitalAgentState: state.hospital.createHospitalAgent
+  createOrganisationAgentState: state.organisation.createOrganisationAgent
 });
 
-export default connect(mapStateToProps, { createHospitalAgentAction })(CreateHospitalAgent);
+export default connect(mapStateToProps, { createOrganisationAgentAction })(CreateOrganisationAgent);

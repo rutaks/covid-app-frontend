@@ -1,19 +1,15 @@
 import { Breadcrumb } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import { InsertRowAboveOutlined, HomeOutlined } from '@ant-design/icons';
-import CreateHospitalAgent from './CreateHospitalAgent';
-import HospitalAgentTable from './HospitalAgentTable';
+import CreateOrganisationAgent from './CreateOrganisationAgent';
+import OrganisationAgentTable from './OrganisationAgentTable';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getHospitalAgentsAction from '../../../redux/actions/hospital/getHospitalAgents';
+import getAgentsAction from '../../../redux/actions/organisation/getAgents';
 
-const HospitalAgent = ({
-  getAgentsState,
-  getHospitalAgentsAction
-  /** //TODO: userState */
-}) => {
+const OrganisationAgent = ({ getAgentsState, agentPayload, getAgentsAction /** //TODO: userState */ }) => {
   const [items, setItems] = useState([]);
-  const [userHospital] = useState({ id: '1' });
+  const [userOrganisation] = useState({ id: '1' });
   const [currentPage, setCurrentPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
@@ -25,21 +21,20 @@ const HospitalAgent = ({
   // }, [userState]);
 
   useEffect(() => {
-    //TODO: ADD ORGANISATION ID WHEN AVAILABLE ON LOGIN
     // if(userOrganisation){
-    getHospitalAgentsAction({ page: currentPage, organisationId: userHospital.id });
+    getAgentsAction({ page: currentPage });
     // }
-  }, [getHospitalAgentsAction, currentPage]);
+  }, [getAgentsAction, currentPage]);
 
   useEffect(() => {
-    if (getAgentsState.payload.content) {
-      const response = getAgentsState.payload.content.map((item, index) => {
+    if (agentPayload.content) {
+      const response = agentPayload.content.map((item, index) => {
         return { ...item, index: index + 1 + 10 * currentPage };
       });
       setItems(response);
-      setTotalElements(getAgentsState.payload.totalElements);
+      setTotalElements(agentPayload.totalElements);
     }
-  }, [getAgentsState.payload, currentPage]);
+  }, [agentPayload, currentPage]);
 
   return (
     <Fragment>
@@ -49,12 +44,12 @@ const HospitalAgent = ({
         </Breadcrumb.Item>
         <Breadcrumb.Item href="">
           <InsertRowAboveOutlined />
-          <span>Agents</span>
+          <span>Organisation</span>
         </Breadcrumb.Item>
       </Breadcrumb>
       <br />
-      <CreateHospitalAgent hospitalId={userHospital.id || '0'} />
-      <HospitalAgentTable
+      <CreateOrganisationAgent organisationId={userOrganisation.id || '0'} />
+      <OrganisationAgentTable
         currentPage={currentPage + 1}
         totalElements={totalElements}
         isLoading={getAgentsState.loading}
@@ -75,16 +70,15 @@ const styles = {
   }
 };
 
-HospitalAgent.propTypes = {
+OrganisationAgent.propTypes = {
   getAgentsState: PropTypes.object,
   agentPayload: PropTypes.object,
-  getHospitalAgentsAction: PropTypes.func
+  getAgentsAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  getAgentsState: state.hospital.getAgents,
-  agentPayload: state.hospital.agentPayload,
-  userState: state.user.user
+  getAgentsState: state.organisation.getAgents,
+  agentPayload: state.organisation.agentPayload
 });
 
-export default connect(mapStateToProps, { getHospitalAgentsAction })(HospitalAgent);
+export default connect(mapStateToProps, { getAgentsAction })(OrganisationAgent);

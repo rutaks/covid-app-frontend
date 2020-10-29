@@ -5,9 +5,13 @@ import PrivateRoute from './PrivateRoute';
 import Logout from '../pages/Logout';
 
 const HOSPITAL_ADMIN_BASE_URL = '/hospital-admin';
+const ORGANISATION_ADMIN_BASE_URL = '/organisation-admin';
 export const urls = {
   hospitalAdmin: {
     viewAgents: `${HOSPITAL_ADMIN_BASE_URL}/agents`
+  },
+  organisationAdmin: {
+    viewAgents: `${ORGANISATION_ADMIN_BASE_URL}/agents`
   }
 };
 

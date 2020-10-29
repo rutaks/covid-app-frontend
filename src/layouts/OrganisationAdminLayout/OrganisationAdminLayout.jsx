@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
-import { Redirect, Switch, Link, Route } from 'react-router-dom';
-import { Layout, Menu, Button } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  InsertRowAboveOutlined,
-  LogoutOutlined
-} from '@ant-design/icons';
+import { Redirect, Switch, Route } from 'react-router-dom';
+import { Layout } from 'antd';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import NotFound from '../../pages/NotFound';
-import Hospital from '../../pages/Hospital';
-import Organisation from '../../pages/Organisation';
-import Admin from '../../pages/Hospital/Admin';
-import Agent from '../../pages/Organisation/Agent';
 import { connect } from 'react-redux';
 import setUserStore from '../../redux/actions/setUserStore';
+import OrganisationAdminSidebar from './components/OrganisationAdminSidebar';
+import { OrganisationAgent } from '../../pages/OrganisationAdminArea';
+import { urls } from '../../routes';
 
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
-const { SubMenu } = Menu;
-
-const OrganisationAdminLayout = ({ userState }) => {
+const OrganisationAdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [size, setSize] = useState('large');
   const handleSizeChange = (e) => {
@@ -33,40 +25,7 @@ const OrganisationAdminLayout = ({ userState }) => {
 
   return (
     <Layout style={{ height: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <SubMenu key="sub1" icon={<InsertRowAboveOutlined />} title="Hospital">
-            <Menu.Item key="1">
-              <Link to="/hospitals" />
-              Hospitals
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/hospitals/admins">Admins</Link>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" icon={<InsertRowAboveOutlined />} title="Organisations">
-            <Menu.Item key="3">
-              <Link to="/organisations" />
-              Organisations
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Link to="/organisations/agents">Agents</Link>
-            </Menu.Item>
-          </SubMenu>
-        </Menu>
-        <Link to="/logout">
-          <Button
-            style={{ position: 'absolute', right: 0, bottom: 0, width: '100%' }}
-            type="primary"
-            onChange={handleSizeChange}
-            icon={<LogoutOutlined />}
-            size={size}
-          >
-            Logout
-          </Button>
-        </Link>
-      </Sider>
+      <OrganisationAdminSidebar collapsed={collapsed} handleSizeChange={handleSizeChange} size={size} />
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
@@ -83,10 +42,11 @@ const OrganisationAdminLayout = ({ userState }) => {
           }}
         >
           <Switch>
-            <Route exact path="/hospitals/admins" component={Admin} />
-            <Route exact path="/hospitals" component={Hospital} />
-            <Route exact path="/organisations" component={Organisation} />
-            <Route exact path="/organisations/agents" component={Agent} />
+            <Route
+              exact
+              path={`${urls.organisationAdmin.viewAgents}/:organisationId`}
+              component={OrganisationAgent}
+            />
             <Route exact component={NotFound} />
           </Switch>
         </Content>
