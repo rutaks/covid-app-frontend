@@ -4,14 +4,14 @@ import { Divider } from 'antd';
 import { Table } from 'antd';
 import Column from 'antd/lib/table/Column';
 
-export default function HospitalAgentTable({
+const VaccineeTable = ({
   totalElements = 0,
   currentPage = 0,
   setCurrentPage = () => {},
   isLoading = true,
   itemArr = [],
   style = {}
-}) {
+}) => {
   const onChange = (page) => {
     setCurrentPage(page - 1);
   };
@@ -19,7 +19,7 @@ export default function HospitalAgentTable({
   return (
     <div style={style}>
       <Divider orientation="left" style={{ fontSize: '15px' }}>
-        Agent List
+        Vaccinee List
       </Divider>
       <br />
       <Table
@@ -35,13 +35,13 @@ export default function HospitalAgentTable({
         <Column title="ID" dataIndex="index" />
         <Column title="Name" dataIndex="names" />
         <Column title="Email" dataIndex="email" />
-        <Column title="Phone Number" dataIndex="phone" />
+        <Column title="Phone" dataIndex="phone" />
       </Table>
     </div>
   );
-}
+};
 
-HospitalAgentTable.propTypes = {
+VaccineeTable.propTypes = {
   totalElements: PropTypes.number,
   currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
@@ -50,3 +50,5 @@ HospitalAgentTable.propTypes = {
   deleteItem: PropTypes.func,
   style: PropTypes.object
 };
+
+export default VaccineeTable;

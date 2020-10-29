@@ -1,50 +1,47 @@
 import React, { useEffect, useRef } from 'react';
 import { Formik } from 'formik';
-import AgentForm from '../OrganisationAgentForm';
+import VaccineeForm from '../VaccineeForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
-import { validationSchema } from '../validations';
-import createOrganisationAgentAction from '../../../../redux/actions/organisation/createAgent';
+import { validationSchema } from './validations';
+import createVaccineeAction from '../../../../redux/actions/vaccinee/createVaccinee';
 
-const CreateOrganisationAgent = ({
-  createOrganisationAgentAction,
-  createOrganisationAgentState,
-  organisationId
-}) => {
+const CreateVaccinee = ({ createVaccineeAction, createVaccineeState, hospitalId }) => {
   const resetFormRef = useRef();
 
   useEffect(() => {
-    if (createOrganisationAgentState.success) {
+    if (createVaccineeState.success) {
       //reset form after successful form submission
-      message.success('Agent Created Successfully');
+      message.success('Vaccinee Created Successfully');
       resetFormRef.current();
     }
-  }, [createOrganisationAgentState.success]);
+  }, [createVaccineeState.success]);
 
   useEffect(() => {
-    if (createOrganisationAgentState.error) {
-      message.error(createOrganisationAgentState.error);
+    if (createVaccineeState.error) {
+      message.error(createVaccineeState.error);
     }
-  }, [createOrganisationAgentState.error]);
+  }, [createVaccineeState.error]);
 
   return (
     <Formik
       initialValues={{
         names: '',
         email: '',
-        phone: ''
+        phone: '',
+        dob: new Date()
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
         resetFormRef.current = resetForm;
-        values.organisationId = organisationId;
-        createOrganisationAgentAction(values);
+        values.hospitalId = hospitalId;
+        createVaccineeAction(values);
       }}
     >
       {({ errors, touched, values }) => (
-        <AgentForm
-          loading={createOrganisationAgentState.loading}
+        <VaccineeForm
+          loading={createVaccineeState.loading}
           values={values}
           errors={errors}
           touched={touched}
@@ -54,7 +51,7 @@ const CreateOrganisationAgent = ({
   );
 };
 
-CreateOrganisationAgent.propTypes = {
+CreateVaccinee.propTypes = {
   /** Props identifying design of form specifying if form is an edit or create form*/
   formType: PropTypes.string,
   /** Boolean representing if form is submitting */
@@ -68,16 +65,16 @@ CreateOrganisationAgent.propTypes = {
   /** Function to get  all organizations*/
   getOrganisationsAction: PropTypes.func,
   /** Function to create  all organisation agent*/
-  createOrganisationAgentAction: PropTypes.func,
+  createVaccineeAction: PropTypes.func,
   /** Object holding  all organizations*/
   organisationPayload: PropTypes.object,
   /** Object holding  all create agent redux state*/
-  createOrganisationAgentState: PropTypes.object,
-  organisationId: PropTypes.number
+  createVaccineeState: PropTypes.object,
+  hospitalId: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
-  createOrganisationAgentState: state.organisation.createOrganisationAgent
+  createVaccineeState: state.vaccinee.createVaccinee
 });
 
-export default connect(mapStateToProps, { createOrganisationAgentAction })(CreateOrganisationAgent);
+export default connect(mapStateToProps, { createVaccineeAction })(CreateVaccinee);

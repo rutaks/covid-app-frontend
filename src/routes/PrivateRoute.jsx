@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import setUserStore from '../redux/actions/setUserStore';
 import { isSuperAdmin, isHospitalAdmin, isOrganisationAdmin } from '../helpers/userHelper';
 import SuperAdminLayout from '../layouts/SuperAdminLayout';
+import HospitalAgentLayout from '../layouts/HospitalAgentLayout';
 import HospitalAdminLayout from '../layouts/HospitalAdminLayout';
 import OrganisationAdminLayout from '../layouts/OrganisationAdminLayout/OrganisationAdminLayout';
 
@@ -22,7 +23,7 @@ const PrivateRoute = ({ userState }) => {
 
   return (
     <Fragment>
-      {isSuperAdmin(userRole) && <SuperAdminLayout />}
+      {isSuperAdmin(userRole) && <HospitalAgentLayout />}
       {isHospitalAdmin(userRole) && <HospitalAdminLayout />}
       {isOrganisationAdmin(userRole) && <OrganisationAdminLayout />}
     </Fragment>
