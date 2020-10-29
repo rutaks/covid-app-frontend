@@ -1,3 +1,4 @@
+import { decodeToken } from '../../../helpers/localStorageHelper';
 import { actionTypes } from '../../actionTypes';
 
 export default (state, { type, payload }) => {
@@ -28,7 +29,7 @@ export default (state, { type, payload }) => {
         ...state,
         isAuth: true,
         // profile: payload.payload.user,
-        // user: localStorage.MOU_COVID_USER,
+        user: decodeToken(),
         login: {
           loading: false,
           success: true,

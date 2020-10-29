@@ -46,6 +46,12 @@ export const hospitalInitialState = {
     message: null,
     error: null
   },
+  getAgents: {
+    success: false,
+    loading: false,
+    message: null,
+    error: null
+  },
   getAdmin: {
     payload: null,
     success: false,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Formik } from 'formik';
 import HospitalForm from '../HospitalForm';
 import { validationSchema } from './validations';
@@ -8,9 +8,11 @@ import createHospitalAction from '../../../redux/actions/hospital/createHospital
 import { message } from 'antd';
 
 const CreateHospital = ({ createHospitalAction, createHospitalState: { loading, success, error } }) => {
+  const resetFormRef = useRef();
   useEffect(() => {
     if (success) {
-      message.success('Category created succesfully');
+      message.success('Hospital created succesfully');
+      resetFormRef.current();
     }
   }, [success]);
 
@@ -24,7 +26,8 @@ const CreateHospital = ({ createHospitalAction, createHospitalState: { loading, 
         names: ''
       }}
       validationSchema={validationSchema}
-      onSubmit={({ names }) => {
+      onSubmit={({ names }, { resetForm }) => {
+        resetFormRef.current = resetForm;
         createHospitalAction({ names });
       }}
     >

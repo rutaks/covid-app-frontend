@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Col, Divider, Row, Space } from 'antd';
 import { EditOutlined, UnorderedListOutlined, DeleteOutlined, FileExcelOutlined } from '@ant-design/icons';
@@ -19,9 +19,6 @@ export default function AgentTable({
     setCurrentPage(page - 1);
   };
 
-  useEffect(() => {
-    console.log(itemArr);
-  }, []);
   return (
     <div style={style}>
       <Divider orientation="left" style={{ fontSize: '15px' }}>

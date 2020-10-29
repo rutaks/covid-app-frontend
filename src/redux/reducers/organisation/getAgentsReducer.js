@@ -5,12 +5,12 @@ export default (state, { type, payload }) => {
     case actionTypes.agent.GET_AGENTS_START:
       return {
         ...state,
-        getAdmins: { success: false, message: null, loading: true, error: null }
+        getAgents: { success: false, message: null, loading: true, error: null }
       };
     case actionTypes.agent.GET_AGENTS_END:
       return {
         ...state,
-        getAdmins: { ...state.getAdmins, loading: false }
+        getAgents: { ...state.getAgents, loading: false }
       };
     case actionTypes.agent.GET_AGENTS_SUCCESS:
       return {
@@ -18,12 +18,12 @@ export default (state, { type, payload }) => {
         // agentPayload: payload,
         //TODO: REFACTOR FOR PAGINATION
         agentPayload: { content: payload },
-        getAdmins: { ...state.getAdmins, success: true }
+        getAgents: { ...state.getAgents, success: true }
       };
     case actionTypes.agent.GET_AGENTS_FAILURE:
       return {
         ...state,
-        getAdmins: { ...state.getAdmins, error: payload }
+        getAgents: { ...state.getAgents, error: payload }
       };
     default:
       return null;

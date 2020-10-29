@@ -1,6 +1,7 @@
-import { initialState } from "../../store/initialStates/";
-import loginReducer from "./loginReducer";
-import clearUserStoreReducer from "./clearUserStoreReducer";
+import { initialState } from '../../store/initialStates/';
+import loginReducer from './loginReducer';
+import clearUserStoreReducer from './clearUserStoreReducer';
+import setUserStoreReducer from './setUserStoreReducer';
 
 /**
  * A function that provides reducer based on action currently being used
@@ -10,6 +11,7 @@ import clearUserStoreReducer from "./clearUserStoreReducer";
  */
 export default (state = initialState.user, action) => {
   const clearUserStore = clearUserStoreReducer(state, action);
+  const setUserStore = setUserStoreReducer(state, action);
   const login = loginReducer(state, action);
-  return clearUserStore || login || state;
+  return clearUserStore || setUserStore || login || state;
 };

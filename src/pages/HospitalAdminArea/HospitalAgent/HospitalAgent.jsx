@@ -1,19 +1,30 @@
 import { Breadcrumb } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
 import { InsertRowAboveOutlined, HomeOutlined } from '@ant-design/icons';
-import CreateAgent from './CreateAgent';
-import AgentTable from './AgentTable';
+import CreateHospitalAgent from './CreateHospitalAgent';
+import HospitalAgentTable from './HospitalAgentTable';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getAgentsAction from '../../../redux/actions/organisation/getAgents';
 
-const Agent = ({ getAgentsState, agentPayload, getAgentsAction }) => {
+const HospitalAgent = ({ getAgentsState, agentPayload, getAgentsAction /** //TODO: userState */ }) => {
   const [items, setItems] = useState([]);
+  const [userOrganisation] = useState({ id: '1' });
   const [currentPage, setCurrentPage] = useState(0);
   const [totalElements, setTotalElements] = useState(0);
 
+  //TODO: ADD ORGANISATION ID WHEN AVAILABLE ON LOGIN
+  // useEffect(() => {
+  //   if(userState){
+  //     setUserOrganisation(userState.organisation);
+  //   }
+  // }, [userState]);
+
   useEffect(() => {
-    getAgentsAction({ page: currentPage });
+    //TODO: ADD ORGANISATION ID WHEN AVAILABLE ON LOGIN
+    // if(userOrganisation){
+    getAgentsAction({ page: currentPage, organisationId: userOrganisation.id });
+    // }
   }, [getAgentsAction, currentPage]);
 
   useEffect(() => {
@@ -34,12 +45,12 @@ const Agent = ({ getAgentsState, agentPayload, getAgentsAction }) => {
         </Breadcrumb.Item>
         <Breadcrumb.Item href="">
           <InsertRowAboveOutlined />
-          <span>Organisation</span>
+          <span>Agents</span>
         </Breadcrumb.Item>
       </Breadcrumb>
       <br />
-      <CreateAgent />
-      <AgentTable
+      <CreateHospitalAgent organisationId={userOrganisation.id || '0'} />
+      <HospitalAgentTable
         currentPage={currentPage + 1}
         totalElements={totalElements}
         isLoading={getAgentsState.loading}
@@ -60,7 +71,7 @@ const styles = {
   }
 };
 
-Agent.propTypes = {
+HospitalAgent.propTypes = {
   getAgentsState: PropTypes.object,
   agentPayload: PropTypes.object,
   getAgentsAction: PropTypes.func
@@ -68,7 +79,8 @@ Agent.propTypes = {
 
 const mapStateToProps = (state) => ({
   getAgentsState: state.organisation.getAgents,
-  agentPayload: state.organisation.agentPayload
+  agentPayload: state.organisation.agentPayload,
+  userState: state.user.user
 });
 
-export default connect(mapStateToProps, { getAgentsAction })(Agent);
+export default connect(mapStateToProps, { getAgentsAction })(HospitalAgent);

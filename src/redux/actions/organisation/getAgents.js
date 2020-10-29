@@ -1,11 +1,13 @@
 import { actionTypes } from '../../actionTypes';
 import apiAction from '../../../helpers/apiAction';
 
-export default ({ page = 0, size = 10, sortBy = 'id', sortDirection = 'DESC' }) => (dispatch) =>
+export default ({ page = 0, size = 10, sortBy = 'id', sortDirection = 'DESC', organisationId = '1' }) => (
+  dispatch
+) =>
   dispatch(
     apiAction({
       method: 'get',
-      url: `/v1/api/organisations/1/admins?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`,
+      url: `/v1/api/organisations/${organisationId}/agents?page=${page}&size=${size}&sortBy=${sortBy}&sortDirection=${sortDirection}`,
       onStart: page === -1 ? actionTypes.agent.GET_ALL_AGENTS_START : actionTypes.agent.GET_AGENTS_START,
       onEnd: page === -1 ? actionTypes.agent.GET_ALL_AGENTS_END : actionTypes.agent.GET_AGENTS_END,
       onSuccess:

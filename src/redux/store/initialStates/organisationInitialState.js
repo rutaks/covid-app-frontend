@@ -53,19 +53,19 @@ export const organisationInitialState = {
     message: null,
     error: null
   },
-  createAgent: {
+  createOrganisationAgent: {
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  editAgent: {
+  editOrganisationAgent: {
     success: false,
     loading: false,
     message: null,
     error: null
   },
-  deleteAgent: {
+  deleteOrganisationAgent: {
     success: false,
     loading: false,
     message: null,
