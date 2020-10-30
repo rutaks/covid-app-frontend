@@ -21,3 +21,7 @@ export const isOrganisationAdmin = (userRole) => {
 export const isHospitalAdmin = (userRole) => {
   return hasRespectiveRole(userRole, ROLES.HOSPITAL_ADMIN);
 };
+
+export const isHospitalAgent = (userRole) => {
+  return hasRespectiveRole(userRole, ROLES.HOSPITAL_AGENT);
+};
