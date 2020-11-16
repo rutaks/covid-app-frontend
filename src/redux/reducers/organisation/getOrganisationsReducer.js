@@ -16,7 +16,9 @@ export default (state, { type, payload }) => {
     case actionTypes.organisation.GET_ORGANISATIONS_SUCCESS:
       return {
         ...state,
-        organisationPayload: payload,
+        // organisationPayload: payload,
+        //TODO: REFACTOR FOR PAGINATION
+        organisationPayload: { content: payload },
         getOrganisations: { ...state.getOrganisations, success: true }
       };
     case actionTypes.organisation.GET_ORGANISATIONS_FAILURE:

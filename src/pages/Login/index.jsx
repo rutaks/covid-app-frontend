@@ -19,7 +19,7 @@ import loginAction from '../../redux/actions/login';
 const Login = ({ loginState, loginAction }) => {
   const history = useHistory();
   useEffect(() => {
-    loginState.success && history.push('/hospitals');
+    loginState.success && history.push('/');
   }, [loginState.success, history]);
 
   useEffect(() => {

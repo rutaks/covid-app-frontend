@@ -1,6 +1,9 @@
 import { initialState } from '../../store/initialStates';
 import getOrganisationsReducer from './getOrganisationsReducer';
 import createOrganisationReducer from './createOrganisationReducer';
+import getAgentsReducer from './getAgentsReducer';
+import createOrganisationAgentReducer from './createOrganisationAgentReducer';
+
 /**
  * A function that provides reducer based on action currently being used
  * @param {Object} state - the current state being used, by default is the user state
@@ -10,5 +13,7 @@ import createOrganisationReducer from './createOrganisationReducer';
 export default (state = initialState.organisation, action) => {
   const getOrganisations = getOrganisationsReducer(state, action);
   const createOrganisation = createOrganisationReducer(state, action);
-  return getOrganisations || createOrganisation || state;
+  const getAgents = getAgentsReducer(state, action);
+  const createOrganisationAgent = createOrganisationAgentReducer(state, action);
+  return getAgents || getOrganisations || createOrganisation || createOrganisationAgent || state;
 };

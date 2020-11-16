@@ -2,6 +2,9 @@ import { apiActionTypes as api } from './apiActionTypes';
 import { userActionTypes as user } from './userActionTypes';
 import { hospitalActionTypes as hospital } from './hospitalActionTypes';
 import { organisationActionTypes as organisation } from './organisationActionTypes';
+import { adminActionTypes as admin } from './adminActionTypes';
+import { agentActionTypes as agent } from './agentActionTypes';
+import { vaccineeActionTypes as vaccinee } from './vaccineeActionTypes';
 
 /**
  * A variable that should store all action types in project
@@ -11,5 +14,8 @@ export const actionTypes = {
   api,
   user,
   hospital,
-  organisation
+  organisation,
+  admin,
+  agent,
+  vaccinee
 };
