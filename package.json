@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "formik": "^2.1.4",
     "formik-antd": "^2.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.0.0",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
